@@ -1,0 +1,24 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <article>
+    <header>
+      <h1>Webdev Cookie</h1>
+      <p>Exemplo de autenticação com sessão, Nunjucks e PicoCSS.</p>
+    </header>
+
+    {% if isAuthenticated %}
+      <p>Você está autenticado como <strong>{{ email }}</strong>.</p>
+      <div class="grid">
+        <a href="/dashboard" role="button">Abrir dashboard</a>
+        <a href="/admin" role="button" class="secondary">Ver dados em memória</a>
+      </div>
+    {% else %}
+      <p>Crie uma conta ou faça login para acessar as áreas protegidas.</p>
+      <div class="grid">
+        <a href="/register" role="button">Criar conta</a>
+        <a href="/login" role="button" class="secondary">Fazer login</a>
+      </div>
+    {% endif %}
+  </article>
+{% endblock %}

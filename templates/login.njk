@@ -1,0 +1,35 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <article>
+    <header>
+      <h1>Entrar</h1>
+      <p>Use o e-mail e a senha cadastrados para iniciar a sessão.</p>
+    </header>
+    <form action="/login" method="post">
+      <label for="email">
+        E-mail
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="voce@exemplo.com"
+          autocomplete="email"
+          required
+        >
+      </label>
+      <label for="password">
+        Senha
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Digite sua senha"
+          autocomplete="current-password"
+          required
+        >
+      </label>
+      <button type="submit">Entrar</button>
+    </form>
+  </article>
+{% endblock %}

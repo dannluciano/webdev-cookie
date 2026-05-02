@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or 'Webdev Cookie' }}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+  </head>
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li><strong>Webdev Cookie</strong></li>
+        </ul>
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li><a href="/register">Cadastro</a></li>
+
+          {% if isAuthenticated %}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/logout">Logout</a></li>
+          {% else %}
+            <li><a href="/login">Login</a></li>
+          {% endif %}
+
+        </ul>
+      </nav>
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

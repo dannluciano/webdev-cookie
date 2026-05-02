@@ -1,0 +1,14 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <article>
+    <header>
+      <h1>Dashboard</h1>
+      <p>Área autenticada da aplicação.</p>
+    </header>
+    <p>Bem-vindo, <strong>{{ email }}</strong>.</p>
+    <p>
+      <a href="/logout" role="button">Encerrar sessão</a>
+    </p>
+  </article>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <article>
+    <header>
+      <h1>Painel administrativo</h1>
+      <p>Visualização dos usuários registrados e das sessões ativas em memória.</p>
+    </header>
+
+    <h2>Usuários</h2>
+    {% if users.length %}
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">E-mail</th>
+              <th scope="col">Salt</th>
+              <th scope="col">Hash</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr>
+                <td>{{ user.email }}</td>
+                <td><code>{{ user.salt }}</code></td>
+                <td><code>{{ user.hash | truncate(32)}}</code></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </figure>
+    {% else %}
+      <p>Nenhum usuário cadastrado.</p>
+    {% endif %}
+
+    <h2>Sessões</h2>
+    {% if sessions.length %}
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Session ID</th>
+              <th scope="col">Usuário</th>
+              <th scope="col">Criada em</th>
+              <th scope="col">Views</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for session in sessions %}
+              <tr>
+                <td><code>{{ session.sessionId }}</code></td>
+                <td>{{ session.email }}</td>
+                <td>{{ session.createdAt }}</td>
+                <td>{{ session.views }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </figure>
+    {% else %}
+      <p>Nenhuma sessão ativa.</p>
+    {% endif %}
+  </article>
+{% endblock %}

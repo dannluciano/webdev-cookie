@@ -1,0 +1,36 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <article>
+    <header>
+      <h1>Criar usuário</h1>
+      <p>Preencha os dados abaixo para registrar uma nova conta.</p>
+    </header>
+    <form action="/register" method="post">
+      <label for="email">
+        E-mail
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="voce@exemplo.com"
+          autocomplete="email"
+          required
+        >
+      </label>
+      <label for="password">
+        Senha
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Digite uma senha segura"
+          autocomplete="new-password"
+          minlength="8"
+          required
+        >
+      </label>
+      <button type="submit">Criar conta</button>
+    </form>
+  </article>
+{% endblock %}
