@@ -1,5 +1,5 @@
-import test from "node:test";
 import assert from "node:assert/strict";
+import test from "node:test";
 import crypto from "crypto";
 import { createApp, hashPassword } from "./app.js";
 
@@ -364,10 +364,10 @@ test("cleanup remove sessões expiradas e preserva sessões válidas", async () 
 	global.setInterval = (callback) => {
 		cleanupCallback = callback;
 		return {
-			unref() {},
+			unref() { },
 		};
 	};
-	global.clearInterval = () => {};
+	global.clearInterval = () => { };
 
 	try {
 		const app = createApp();

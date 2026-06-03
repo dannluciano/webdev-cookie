@@ -10,6 +10,7 @@
 		"start": "node main.js",
 		"dev": "node --watch --watch-path=. --watch-path=./templates main.js",
 		"test": "node --test main.test.js",
+		"test:e2e": "node --test --test-concurrency=1 test/*.e2e.test.js",
 		"test:coverage": "node --test --experimental-test-coverage main.test.js"
 	},
 	"dependencies": {
