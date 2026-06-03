@@ -1,8 +1,8 @@
-import { server } from './app.js';
+import { server } from "./app.js";
 
 const PORT = 8080;
-const HOST = 'localhost';
+const HOST = "localhost";
 
 server.listen(PORT, HOST, () => {
-  console.log(`Server is running on http://${HOST}:${PORT}`);
+	console.log(`Server is running on http://${HOST}:${PORT}`);
 });
