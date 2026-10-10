@@ -1,0 +1,15 @@
+name: WebDev Pipeline
+on: [workflow_dispatch]
+jobs:
+  Build-and-Test-WebDevCookie-Application:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Use Node.js v26.11.0
+        uses: actions/setup-node@v7
+        with:
+          node-version: "v26.11.0"
+          cache: "npm"
+      - run: npm ci
+      - run: npm test
+      - run: npm run test:e2e
