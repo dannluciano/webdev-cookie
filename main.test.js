@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import test from "node:test";
-import crypto from "crypto";
 import { createApp, hashPassword } from "./app.js";
 
 async function startApp() {
@@ -364,10 +364,10 @@ test("cleanup remove sessões expiradas e preserva sessões válidas", async () 
 	global.setInterval = (callback) => {
 		cleanupCallback = callback;
 		return {
-			unref() { },
+			unref() {},
 		};
 	};
-	global.clearInterval = () => { };
+	global.clearInterval = () => {};
 
 	try {
 		const app = createApp();
@@ -406,7 +406,14 @@ test("close resolve sem listen e propaga erro de server.close", async () => {
 
 test("hashPassword propaga erro do pbkdf2", async () => {
 	const originalPbkdf2 = crypto.pbkdf2;
-	crypto.pbkdf2 = (password, salt, iterations, keylen, digest, callback) => {
+	crypto.pbkdf2 = (
+		_password,
+		_salt,
+		_iterations,
+		_keylen,
+		_digest,
+		callback,
+	) => {
 		callback(new Error("pbkdf2 failure"));
 	};
 

@@ -3,9 +3,6 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
-export const BASE_URL = process.env.E2E_BASE_URL || "http://localhost:8080";
-export const PASSWORD = "12345678";
-
 export function assertSpecIncludes(specPath, expectedText) {
 	const fullPath = path.resolve(process.cwd(), specPath);
 	const feature = fs.readFileSync(fullPath, "utf8");
@@ -44,7 +41,9 @@ export function createClient() {
 	const cookies = new Map();
 
 	function cookieHeader() {
-		return Array.from(cookies, ([name, value]) => `${name}=${value}`).join("; ");
+		return Array.from(cookies, ([name, value]) => `${name}=${value}`).join(
+			"; ",
+		);
 	}
 
 	function saveCookies(response) {
@@ -56,8 +55,8 @@ export function createClient() {
 		for (const cookie of splitSetCookie(setCookie)) {
 			const [pair, ...attributes] = cookie.split(";");
 			const [name, value = ""] = pair.trim().split("=");
-			const expiresCookie = attributes.some((attribute) =>
-				attribute.trim().toLowerCase() === "max-age=0",
+			const expiresCookie = attributes.some(
+				(attribute) => attribute.trim().toLowerCase() === "max-age=0",
 			);
 
 			if (expiresCookie) {
@@ -152,24 +151,33 @@ export function assertHtmlExcludes(html, text) {
 export function assertLink(html, href, label) {
 	assert.match(
 		html,
-		new RegExp(`<a\\b[^>]*href="${escapeRegExp(href)}"[^>]*>[\\s\\S]*${escapeRegExp(label)}[\\s\\S]*<\\/a>`),
+		new RegExp(
+			`<a\\b[^>]*href="${escapeRegExp(href)}"[^>]*>[\\s\\S]*${escapeRegExp(label)}[\\s\\S]*<\\/a>`,
+		),
 	);
 }
 
 export function assertForm(html, action, method = "post") {
 	assert.match(
 		html,
-		new RegExp(`<form\\b[^>]*action="${escapeRegExp(action)}"[^>]*method="${escapeRegExp(method)}"[^>]*>`),
+		new RegExp(
+			`<form\\b[^>]*action="${escapeRegExp(action)}"[^>]*method="${escapeRegExp(method)}"[^>]*>`,
+		),
 	);
 }
 
 export function assertInput(html, name, attributes = []) {
-	assert.match(html, new RegExp(`<input\\b[^>]*name="${escapeRegExp(name)}"[^>]*>`));
+	assert.match(
+		html,
+		new RegExp(`<input\\b[^>]*name="${escapeRegExp(name)}"[^>]*>`),
+	);
 
 	for (const attribute of attributes) {
 		assert.match(
 			html,
-			new RegExp(`<input\\b(?=[^>]*name="${escapeRegExp(name)}")(?=[^>]*${escapeRegExp(attribute)})[^>]*>`),
+			new RegExp(
+				`<input\\b(?=[^>]*name="${escapeRegExp(name)}")(?=[^>]*${escapeRegExp(attribute)})[^>]*>`,
+			),
 		);
 	}
 }

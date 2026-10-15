@@ -1,5 +1,5 @@
-import http from "http";
-import crypto from "crypto";
+import crypto from "node:crypto";
+import http from "node:http";
 
 const sessions = {};
 

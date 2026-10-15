@@ -8,7 +8,6 @@ import {
 	ensureE2EServerIsAvailable,
 	extractSessionRow,
 	loginUser,
-	PASSWORD,
 	registerUser,
 	uniqueEmail,
 } from "./e2e-helpers.js";
