@@ -10,5 +10,13 @@ jobs:
         with:
           node-version: "v26.11.0"
           cache: "npm"
-      - run: npm ci
-      - run: npm test
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
+      - name: Run Linter
+        run: biome ci
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Automatic Tests
+        run: npm test
